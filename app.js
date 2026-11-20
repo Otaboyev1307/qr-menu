@@ -115,5 +115,90 @@
   let st;
   $('#search').addEventListener('input', e => { clearTimeout(st); st = setTimeout(() => { query = e.target.value; render(); }, 150); });
 
+  // ---- Google Sheets: menyu jadvaldan olinadi (data.js — zaxira)
+  // Ustunlar: Bo'lim | Belgi | Nomi | Tavsif | Narx | Hajmi | Emoji | Rasm | Ommabop | Bor
+  const CACHE_KEY = 'qr_menu_sheet_cache';
+
+  function parseCSV(text) {
+    const rows = []; let row = [], cell = '', q = false;
+    for (let i = 0; i < text.length; i++) {
+      const ch = text[i];
+      if (q) {
+        if (ch === '"' && text[i + 1] === '"') { cell += '"'; i++; }
+        else if (ch === '"') q = false;
+        else cell += ch;
+      } else if (ch === '"') q = true;
+      else if (ch === ',') { row.push(cell); cell = ''; }
+      else if (ch === '\n' || ch === '\r') {
+        if (ch === '\r' && text[i + 1] === '\n') i++;
+        row.push(cell); rows.push(row); row = []; cell = '';
+      } else cell += ch;
+    }
+    if (cell || row.length) { row.push(cell); rows.push(row); }
+    return rows;
+  }
+
+  const norm = s => String(s || '').toLowerCase().replace(/[^a-zа-яё]/g, '');
+  const yes = v => /^(true|1|ha|bor|yes|да|истина|✓|✔|x)$/i.test(String(v).trim());
+
+  function sheetToCategories(text) {
+    const rows = parseCSV(text).filter(r => r.some(c => c.trim()));
+    if (rows.length < 2) return null;
+    const head = rows[0].map(norm);
+    const col = (...names) => head.findIndex(h => names.some(n => h === norm(n)));
+    const C = {
+      cat: col("Bo'lim", 'Bolim', 'Kategoriya'), icon: col('Belgi', 'Ikon'), name: col('Nomi', 'Taom'),
+      desc: col('Tavsif'), price: col('Narx', 'Narxi'), weight: col('Hajmi', "Og'irligi"),
+      emoji: col('Emoji'), image: col('Rasm'), popular: col('Ommabop'), available: col('Bor', 'Mavjud'),
+    };
+    if (C.name < 0 || C.price < 0) return null;
+    const get = (r, k) => (C[k] >= 0 ? (r[C[k]] || '').trim() : '');
+    const cats = [], byName = new Map();
+    for (const r of rows.slice(1)) {
+      const name = get(r, 'name');
+      if (!name) continue;
+      const cname = get(r, 'cat') || 'Menyu';
+      let c = byName.get(cname);
+      if (!c) { c = { name: cname, icon: get(r, 'icon') || '🍽️', items: [] }; byName.set(cname, c); cats.push(c); }
+      else if (!c.icon || c.icon === '🍽️') c.icon = get(r, 'icon') || c.icon;
+      c.items.push({
+        name, desc: get(r, 'desc'),
+        price: parseInt(get(r, 'price').replace(/\D/g, ''), 10) || 0,
+        weight: get(r, 'weight'), emoji: get(r, 'emoji') || '🍽️', image: get(r, 'image'),
+        popular: yes(get(r, 'popular')),
+        available: C.available < 0 ? true : yes(get(r, 'available')),
+      });
+    }
+    return cats.length ? cats : null;
+  }
+
+  function useCategories(cats) {
+    M.categories = cats;
+    render();
+    if (document.querySelector('#sheet.open')) closeSheet();
+  }
+
+  async function loadSheet() {
+    if (!M.sheet) return;
+    try {
+      const sep = M.sheet.includes('?') ? '&' : '?';
+      const r = await fetch(`${M.sheet}${sep}_=${Date.now()}`, { cache: 'no-store' });
+      if (!r.ok) throw new Error(r.status);
+      const text = await r.text();
+      const cats = sheetToCategories(text);
+      if (!cats) throw new Error('jadval bo\'sh');
+      try { localStorage.setItem(CACHE_KEY, text); } catch {}
+      useCategories(cats);
+    } catch (e) {
+      console.warn('Google Sheets yuklanmadi, zaxira menyu ishlatildi:', e);
+    }
+  }
+
+  // oldingi safar yuklangan jadval bo'lsa — darhol shuni ko'rsatamiz
+  if (M.sheet) {
+    try { const c = sheetToCategories(localStorage.getItem(CACHE_KEY) || ''); if (c) M.categories = c; } catch {}
+  }
   render();
+  loadSheet();
+  setInterval(loadSheet, 60000);   // ochiq turgan menyu har daqiqada yangilanadi
 })();

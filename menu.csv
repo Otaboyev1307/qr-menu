@@ -1,0 +1,27 @@
+Bo'lim,Belgi,Nomi,Tavsif,Narx,Hajmi,Emoji,Rasm,Ommabop,Bor
+Taomlar,🍲,Osh (to'y oshi),"Devzira guruch, qo'y go'shti, sariq sabzi, no'xat va bedana tuxumi",45000,400 g,🍛,,TRUE,TRUE
+Taomlar,🍲,Lag'mon,"Qo'lda cho'zilgan xamir, mol go'shti va sabzavotli sous",38000,450 g,🍜,,TRUE,TRUE
+Taomlar,🍲,Manti,"Qo'y go'shti va piyozli bug'da pishgan manti, qatiq bilan",35000,5 dona,🥟,,FALSE,TRUE
+Taomlar,🍲,Shashlik (qo'y),"Ko'mirda pishirilgan yumshoq qo'y go'shti, piyoz va ko'kat bilan",28000,1 six,🍢,,TRUE,TRUE
+Taomlar,🍲,Qozon kabob,"Qozonda qovurilgan go'sht va kartoshka, ziravorlar bilan",55000,500 g,🥘,,FALSE,FALSE
+Taomlar,🍲,Shurva,"Qo'y go'shtidan tayyorlangan quyuq sho'rva, sabzavotlar bilan",30000,400 ml,🍲,,FALSE,TRUE
+Taomlar,🍲,Chuchvara,"Mol go'shtili kichik chuchvara, qaymoq bilan",32000,350 g,🥟,,FALSE,TRUE
+Taomlar,🍲,Burger klassik,"Mol go'shti kotleti, cheddar, pomidor, bodring, maxsus sous",42000,320 g,🍔,,FALSE,TRUE
+Taomlar,🍲,Pitsa Margarita,"Pomidor sousi, motsarella, rayhon",65000,30 sm,🍕,,FALSE,TRUE
+Salatlar,🥗,Achchiq-chuchuk,"Pomidor, piyoz, achchiq qalampir va rayhon",15000,250 g,🍅,,TRUE,TRUE
+Salatlar,🥗,Sezar tovuq bilan,"Aysberg, grilda tovuq, parmezan, kruton, sezar sousi",38000,280 g,🥗,,TRUE,TRUE
+Salatlar,🥗,Grek salati,"Pomidor, bodring, bolgar qalampiri, zaytun, feta pishlog'i",34000,270 g,🫒,,FALSE,TRUE
+Salatlar,🥗,Olivye,"Klassik retsept: kartoshka, tuxum, bodring, kolbasa, mayonez",25000,250 g,🥔,,FALSE,TRUE
+Salatlar,🥗,Toshkent salati,"Mol go'shti, turp, tuxum va qovurilgan piyoz",30000,260 g,🥩,,FALSE,TRUE
+Ichimliklar,🥤,Ko'k choy (choynak),Klassik o'zbek ko'k choyi,8000,800 ml,🍵,,FALSE,TRUE
+Ichimliklar,🥤,Qora choy limon bilan,Limon va asal bilan,10000,800 ml,🫖,,FALSE,TRUE
+Ichimliklar,🥤,Kapuchino,Espresso va ko'pikli sut,22000,300 ml,☕,,TRUE,TRUE
+Ichimliklar,🥤,Limonad (uy),"Yangi limon, yalpiz va gazli suv",20000,500 ml,🍋,,TRUE,TRUE
+Ichimliklar,🥤,Apelsin fresh,Yangi siqilgan apelsin sharbati,28000,300 ml,🍊,,FALSE,TRUE
+Ichimliklar,🥤,Moxito (alkogolsiz),"Laym, yalpiz, shakar sharbati, soda",25000,400 ml,🍹,,FALSE,TRUE
+Ichimliklar,🥤,Coca-Cola,Shisha idishda,12000,500 ml,🥤,,FALSE,TRUE
+Ichimliklar,🥤,Mineral suv,Gazli / gazsiz,7000,500 ml,💧,,FALSE,TRUE
+Shirinliklar,🍰,Chizkeyk,"Nyu-York chizkeyki, rezavor sousi bilan",32000,150 g,🍰,,TRUE,TRUE
+Shirinliklar,🍰,Shokoladli fondan,"Ichi oqib turuvchi shokolad keki, muzqaymoq bilan",35000,180 g,🍫,,FALSE,TRUE
+Shirinliklar,🍰,Muzqaymoq,"3 shar: vanil, shokolad, qulupnay",20000,3 shar,🍨,,FALSE,TRUE
+Shirinliklar,🍰,Paxlava,Yong'oq va asalli qatlamli shirinlik,18000,4 dona,🥮,,FALSE,TRUE
