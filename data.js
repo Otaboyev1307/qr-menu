@@ -1,4 +1,4 @@
-// Menyu ma'lumotlari. Bu faylni editor.html orqali yangilang.
+// Menyu ma'lumotlari. Google Sheets ulangan bo'lsa (sheet), menyu o'sha jadvaldan olinadi; bu yerdagi taomlar zaxira.
 window.MENU = {
   "cafe": {
     "name": "Choyxona Navro'z",
@@ -291,5 +291,6 @@ window.MENU = {
         }
       ]
     }
-  ]
+  ],
+  "sheet": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTwBVLYbP4GT1oA5iPUTjwhKsf4gQhWs8wq8GRk7MpDOqbSWRI5KK7t3gXubW2U6O_CcnjST3tL8vTI/pub?gid=0&single=true&output=csv"
 };
